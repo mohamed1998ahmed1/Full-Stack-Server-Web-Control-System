@@ -5,6 +5,12 @@
 
 ---
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ac81be9b-bc28-4a0a-9d39-369a24fc7ff8" alt="Dashboard Showcase" width="90%" style="border-radius: 8px;">
+</p>
+
+---
+
 ## 🛠️ التقنيات المستخدمة (Tech Stack)
 
 * **Frontend:** React (TypeScript) / Vite
