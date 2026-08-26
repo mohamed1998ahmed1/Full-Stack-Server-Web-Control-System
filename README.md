@@ -33,3 +33,4 @@
    ```bash
    npm install
    npm run dev
+<img width="900" height="520" alt="Code_Generated_Image" src="https://github.com/user-attachments/assets/ac81be9b-bc28-4a0a-9d39-369a24fc7ff8" />
