@@ -1,117 +1,113 @@
-﻿import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
-    const [showSplash, setShowSplash] = useState(true);
+export default function App() {
+    const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowSplash(false);
-        }, 3500);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const products = [
-        { id: 1, name: 'فستان ميدي شيفون', price: '1,250 EGP' },
-        { id: 2, name: 'فستان ميدي شيفون', price: '1,250 EGP' },
-        { id: 3, name: 'فستان ميدي شوقار', price: '1,250 EGP' },
-        { id: 4, name: 'فستان ميدي شيفون', price: '1,250 EGP' },
-        { id: 5, name: 'عباية كلاسيك', price: '1,800 EGP' },
-        { id: 6, name: 'كيمونو حرير', price: '1,450 EGP' },
-    ];
+    const handleAction = (actionName: string) => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            alert(`تم تنفيذ: ${actionName} بنجاح`);
+        }, 1000);
+    };
 
     return (
-        <div className="app">
-            {/* 1. شاشة الدخول */}
-            {showSplash && (
-                <div className="splash-screen">
-                    <div className="walker-container">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png"
-                            alt="NADA Fashion"
-                            className="walking-icon"
-                        />
-                    </div>
-                    <h1 className="splash-logo">NADA</h1>
-                    <p className="splash-subtitle">أناقة وبساطة</p>
-                    <div className="loading-bar"><div className="loading-progress"></div></div>
+        <div className="dashboard-container">
+            {/* Header */}
+            <header className="dash-header">
+                <div>
+                    <h1 className="dash-title">
+                        <span className="icon">⚡</span> منظومة التحكم وإدارة السيرفر
+                    </h1>
+                    <p className="dash-subtitle">مراقبة الأداء المباشر وإدارة الموارد</p>
                 </div>
-            )}
 
-            {/* 2. الهيدر والقائمة */}
-            <header className="header">
-                <div className="logo">ندى</div>
-                <ul className="nav-links">
-                    <li><a href="#" className="active">الكل</a></li>
-                    <li><a href="#">فساتين</a></li>
-                    <li><a href="#">عبايات</a></li>
-                    <li><a href="#">طرح</a></li>
-                    <li><a href="#">كيمونو</a></li>
-                </ul>
-                <div className="cart-icon">🛒 0</div>
+                <div className="status-badge">
+                    <span className="pulse-dot"></span>
+                    <span>السيرفر متصل (Online)</span>
+                </div>
             </header>
 
-            {/* 3. البانر الرئيسي */}
-            <div className="hero">
-                <div className="hero-text">أناقة وبساطة - مجموعة خريف 2026</div>
+            {/* Metrics Grid */}
+            <div className="metrics-grid">
+
+                {/* CPU Card */}
+                <div className="metric-card">
+                    <div className="card-head">
+                        <span>استهلاك المعالج (CPU)</span>
+                        <span className="card-icon">💻</span>
+                    </div>
+                    <div className="card-value">24%</div>
+                    <div className="progress-bar">
+                        <div className="progress-fill cpu-fill" style={{ width: '24%' }}></div>
+                    </div>
+                </div>
+
+                {/* RAM Card */}
+                <div className="metric-card">
+                    <div className="card-head">
+                        <span>الذاكرة العشوائية (RAM)</span>
+                        <span className="card-icon">📊</span>
+                    </div>
+                    <div className="card-value ltr-text">4.2 / 16 GB</div>
+                    <div className="progress-bar">
+                        <div className="progress-fill ram-fill" style={{ width: '26%' }}></div>
+                    </div>
+                </div>
+
+                {/* API Card */}
+                <div className="metric-card">
+                    <div className="card-head">
+                        <span>طلبات API النشطة</span>
+                        <span className="card-icon">🚀</span>
+                    </div>
+                    <div className="card-value ltr-text">
+                        1,280 <span className="unit">/sec</span>
+                    </div>
+                    <div className="card-sub text-amber">↑ 12% مقارنة بالدقيقة السابقة</div>
+                </div>
+
+                {/* Security Card */}
+                <div className="metric-card">
+                    <div className="card-head">
+                        <span>الأمان و Firewall</span>
+                        <span className="card-icon">🛡️</span>
+                    </div>
+                    <div className="card-value text-purple">مستقر ومحمي</div>
+                    <div className="card-sub text-muted">جميع المنافذ غير الضرورية مغلقة</div>
+                </div>
+
             </div>
 
-            {/* 4. قسم المتجر والفلاتر */}
-            <div className="main-container">
-                <aside className="sidebar">
-                    <div className="filter-group">
-                        <h4>السعر</h4>
-                        <input type="range" min="1250" max="5000" />
-                    </div>
-                    <div className="filter-group">
-                        <h4>المقاس</h4>
-                        <div className="sizes">
-                            <span>S</span><span>M</span><span>L</span><span>XL</span>
-                        </div>
-                    </div>
-                </aside>
+            {/* Action Controls */}
+            <div className="actions-card">
+                <h2>التحكم والعمليات السريعة</h2>
+                <p className="actions-sub">نفّذ الأوامر الفورية لإدارة خدمات الخادم</p>
 
-                <main className="products-section">
-                    <h3 className="section-title">أحدث الوصول</h3>
-                    <div className="products-grid">
-                        {products.map((item) => (
-                            <div key={item.id} className="product-card">
-                                <div className="product-img"></div>
-                                <div className="product-title">{item.name}</div>
-                                <div className="product-price">{item.price}</div>
-                                <button className="btn-add">أضف للسلة</button>
-                            </div>
-                        ))}
-                    </div>
-                </main>
+                <div className="btn-group">
+                    <button
+                        onClick={() => handleAction('إعادة تشغيل الخادم')}
+                        disabled={loading}
+                        className="btn btn-primary">
+                        🔄 إعادة تشغيل الخادم
+                    </button>
+
+                    <button
+                        onClick={() => handleAction('مسح التخزين المؤقت')}
+                        disabled={loading}
+                        className="btn btn-danger">
+                        🗑️ مسح التخزين المؤقت (Cache)
+                    </button>
+
+                    <button
+                        onClick={() => handleAction('عرض السجلات')}
+                        disabled={loading}
+                        className="btn btn-secondary">
+                        📄 عرض سجلات النظام (Logs)
+                    </button>
+                </div>
             </div>
-
-            {/* 5. قسم Shop by Look */}
-            <section className="extra-section">
-                <h3 className="section-title">Shop by Look</h3>
-                <div className="look-grid">
-                    <div className="look-card">طقم الخريف الكامل</div>
-                    <div className="look-card">إطلالة المناسبات</div>
-                </div>
-            </section>
-
-            {/* 6. قسم How it Works */}
-            <section className="extra-section">
-                <h3 className="section-title">How It Works</h3>
-                <div className="steps-grid">
-                    <div className="step-card">1. اختاري موديلك</div>
-                    <div className="step-card">2. حددي المقاس</div>
-                    <div className="step-card">3. استلمي عند الباب</div>
-                </div>
-            </section>
-
-            {/* 7. الفوتر */}
-            <footer className="footer">
-                <p>جميع الحقوق محفوظة © 2026 - متجر ندى للأزياء</p>
-            </footer>
         </div>
     );
 }
-
-export default App;
