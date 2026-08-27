@@ -6,8 +6,7 @@
 ---
 
 <p align="center">
-  <img src=<img width="965" height="504" alt="image" src="https://github.com/user-attachments/assets/94ce0615-5685-4bdb-94cb-14a174a67cca" />
-radius: 8px;">
+  <img src="https://github.com/user-attachments/assets/ac81be9b-bc28-4a0a-9d39-369a24fc7ff8" alt="Dashboard Showcase" width="90%" style="border-radius: 8px;">
 </p>
 
 ---
